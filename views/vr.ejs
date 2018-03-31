@@ -7,7 +7,7 @@
 <body>
 
     <a-scene>
-        <a-text id='paragraph' align="justified"  opacity="1" value="<%=text%> " width="3" position="-2 2 -2" color=red><%=text%></a-text>
+        <a-text id='paragraph' opacity="1" value="<%=text%> " width="3" position="-2 2.5 -2" color=teal><%=text%></a-text>
 
         <a-asset>
             <img id="test" src="/<%= analysis %>.jpg"  />
@@ -18,7 +18,7 @@
                                     position="0 5 5">
         </a-curvedimage>
     </a-scene>
-
+    <!-- <a href= "/ocr/1" >NEXTTTTTT</a> -->
     <script>
     myAudio = new Audio('../<%=analysis%>.mp3');
     myAudio.addEventListener('ended', function() {

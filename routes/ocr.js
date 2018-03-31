@@ -77,7 +77,7 @@ router.post('/:page',uploads.single('file'), (req,res,next)=>{
         const detections = results[0].textAnnotations;
         var text = '';
         detections.forEach((datta) => {
-            text+=datta.description;
+            text+=datta.description+' ';
 
         });
         shell.rm(req.file.path);

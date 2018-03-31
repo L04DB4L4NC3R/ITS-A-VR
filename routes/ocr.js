@@ -16,7 +16,7 @@ const client = new vision.ImageAnnotatorClient();
 
 
 
-function pdf_to_png(file,pgno){
+function pdf_to_png(file,pgno=0){
     return new Promise((resolve,reject)=>{
        var pdfimage = new PDFImage(file);
         pdfimage.convertPage(pgno)
@@ -58,7 +58,7 @@ function analyze(text){
 }
 
 
-router.post('/:page',uploads.single('file'), (req,res,next)=>{
+router.post('/',uploads.single('file'), (req,res,next)=>{
   //  console.log(req.file);
 
     if(req.file === undefined){
@@ -66,7 +66,7 @@ router.post('/:page',uploads.single('file'), (req,res,next)=>{
         next(err);
     }
 
-     pdf_to_png(req.file.path,req.params.page)
+     pdf_to_png(req.file.path)
      .then((filepath)=>{
 
 
@@ -80,14 +80,14 @@ router.post('/:page',uploads.single('file'), (req,res,next)=>{
             text+=datta.description+' ';
 
         });
-        shell.rm(req.file.path);
+        //shell.rm(req.file.path);
         shell.rm(filepath);
 console.log(text);
         analyze(text)
         .then((txt)=>{
           var i=0;
           var data='';
-          var response={text:text,analysis:JSON.parse(txt).document_tone.tones[0].tone_name,pgid:req.params.page};
+          var response={text:text,analysis:JSON.parse(txt).document_tone.tones[0].tone_name};
          res.render('vr',response);
         })
         .catch(err=>next(err));
@@ -104,5 +104,50 @@ console.log(text);
 
 
 });
+
+
+
+
+
+router.get('/:p',(req,res)=>{
+
+    pdf_to_png('./uploads/*',req.params.p)
+    .then((filepath)=>{
+
+
+       client
+     .textDetection(filepath)
+     .then((results) => {
+   //    console.log(JSON.stringify(results));
+       const detections = results[0].textAnnotations;
+       var text = '';
+       detections.forEach((datta) => {
+           text+=datta.description+' ';
+
+       });
+       //shell.rm(req.file.path);
+       shell.rm(filepath);
+console.log(text);
+       analyze(text)
+       .then((txt)=>{
+         var i=0;
+         var data='';
+         var response={text:text,analysis:JSON.parse(txt).document_tone.tones[0].tone_name};
+        res.render('vr',response);
+       })
+       .catch(err=>next(err));
+
+     })
+     .catch(err => {
+       res.json({err});
+     });
+
+
+  }).catch(err=>res.send(err));
+
+
+});
+
+
 
 module.exports = router;

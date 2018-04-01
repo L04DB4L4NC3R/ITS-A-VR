@@ -7,7 +7,7 @@
 <body>
 
     <a-scene>
-        <a-text id='paragraph' opacity="1" value="<%=text%> " width="3" position="-2 2.5 -2" color=teal><%=text%></a-text>
+        <a-text id='paragraph' opacity="1" value="<%=text%> " width="3" position="-2 2 -2" color=black><%=text%></a-text>
 
         <a-asset>
             <img id="test" src="/<%= analysis %>.jpg"  />
@@ -30,14 +30,12 @@
     </script>
 
     <script>
-        localStorage.clear();
+        //localStorage.clear();
         if(localStorage.getItem('index')===null)
             localStorage.setItem('index',0);
         else
             localStorage.setItem('index',parseInt( localStorage.getItem('index') )+1);
-        //alert(localStorage.getItem('index'))
-
     </script>
-
+    <script src="script.js"></script>
 </body>
 </html>

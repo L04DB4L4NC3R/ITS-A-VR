@@ -80,14 +80,17 @@ router.post('/',uploads.single('file'), (req,res,next)=>{
             text+=datta.description+' ';
 
         });
+        req.session.file = req.file.path;
         //shell.rm(req.file.path);
         shell.rm(filepath);
-console.log(text);
+
         analyze(text)
         .then((txt)=>{
           var i=0;
           var data='';
-          var response={text:text,analysis:JSON.parse(txt).document_tone.tones[0].tone_name};
+          var tone = JSON.parse(txt).document_tone.tones[0].tone_name;
+          console.log(tone);
+          var response={text:text,analysis:tone};
          res.render('vr',response);
         })
         .catch(err=>next(err));
@@ -111,7 +114,7 @@ console.log(text);
 
 router.get('/:p',(req,res)=>{
 
-    pdf_to_png('./uploads/*',req.params.p)
+    pdf_to_png(req.session.file,req.params.p)
     .then((filepath)=>{
 
 
@@ -127,7 +130,6 @@ router.get('/:p',(req,res)=>{
        });
        //shell.rm(req.file.path);
        shell.rm(filepath);
-console.log(text);
        analyze(text)
        .then((txt)=>{
          var i=0;

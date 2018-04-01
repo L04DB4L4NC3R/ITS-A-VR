@@ -3,11 +3,18 @@
 const express=require('express');
 const mongoose=require('mongoose');
 const morgan=require('morgan');
+const session = require("express-session");
 const bodyParser=require('body-parser');
 const ocr=require('./routes/ocr');
+const secret = require("./secret")
 const app=express();
 
 
+app.use(session({
+    secret:secret.session.secret,
+    saveUninitialized:false,
+    resave:false
+}));
 app.set("view engine","ejs");
 app.use(express.static('static'));
 app.use(morgan('dev'));

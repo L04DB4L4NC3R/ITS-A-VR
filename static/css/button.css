@@ -8,6 +8,7 @@ body{
   display: inline-block;
   width: 300px;
   padding: 8px;
+  padding-right:20%;
   color: #fff;
   border: 2px solid #fff;
   border-radius: 5px;

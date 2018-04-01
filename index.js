@@ -26,11 +26,9 @@ app.get('/',(req,res,next)=>{
     res.render('index',{music:'none'});//res.render('index',{music:'none'});
 });
 
+app.get('/test',(req,res,next)=>{
 
-
-app.get('/:token',(req,res,next)=>{
-
-    res.render('vr',{"text":"test text","analysis":"test"});
+    res.render('vr',{text:"Sample test text",analysis:"test"});
 
 });
 

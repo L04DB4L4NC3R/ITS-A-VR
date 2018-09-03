@@ -5,13 +5,13 @@ const mongoose=require('mongoose');
 const morgan=require('morgan');
 const session = require("express-session");
 const bodyParser=require('body-parser');
-const ocr=require('./routes/ocr');
-const secret = require("./secret")
+const ocr=require('./routes/optimized_ocr');
+//const secret = require("./secret")
 const app=express();
 
 
 app.use(session({
-    secret:secret.session.secret,
+    secret:"sadmsadkasndnadknska",
     saveUninitialized:false,
     resave:false
 }));

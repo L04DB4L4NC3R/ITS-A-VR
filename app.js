@@ -1,5 +1,6 @@
 //export GOOGLE_APPLICATION_CREDENTIALS="./apikey.json"
 
+require("dotenv").config();
 const express=require('express');
 const mongoose=require('mongoose');
 const morgan=require('morgan');
@@ -11,7 +12,7 @@ const app=express();
 
 
 app.use(session({
-    secret:"sadmsadkasndnadknska",
+    secret:process.env.SECRET,
     saveUninitialized:false,
     resave:false
 }));

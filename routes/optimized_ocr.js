@@ -25,7 +25,7 @@ router.post('/',uploads.single('file'), (req,res,next)=>{
         let str = '';
         for(let i of data)
             str+=i;
-
+        
         res.json({text:data,sentiment:Sentiment.analyze(str)});
     });
 

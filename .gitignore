@@ -1,5 +1,4 @@
 node_modules
-secret.js
+.env
 apikey.json
-boomfile
 uploads

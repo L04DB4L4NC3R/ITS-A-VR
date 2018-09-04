@@ -6,7 +6,7 @@ const mongoose=require('mongoose');
 const morgan=require('morgan');
 const session = require("express-session");
 const bodyParser=require('body-parser');
-const ocr=require('./routes/optimized_ocr');
+const ocr=require('./routes/socket_serve');
 //const secret = require("./secret")
 const app=express();
 

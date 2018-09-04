@@ -4,12 +4,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app"
+    "start": "node app"
   },
   "author": "arjun agarwal",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^6.0.0",
     "ejs": "^2.5.7",
     "express": "^4.16.3",
     "express-session": "^1.15.6",

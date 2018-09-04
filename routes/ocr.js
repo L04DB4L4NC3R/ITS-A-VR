@@ -8,7 +8,14 @@ const sentiment = require("sentiment");
 const Sentiment = new sentiment();
 
 
-
+/**
+ * @api {post} /ocr submit PDF
+ * @apiName submit PDF
+ * @apiParam {file} file upload multpart file data
+ * 
+ * @apiParamExample {json} response-example
+ * 
+ */
 router.post('/',uploads.single('file'), (req,res,next)=>{
 
     if(req.file === undefined){

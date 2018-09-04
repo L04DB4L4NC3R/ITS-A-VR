@@ -4,7 +4,6 @@ var uploads = multer({dest:'uploads/'});
 
 const fs = require('fs');
 const vision = require('@google-cloud/vision');
-const shell  = require("shelljs");
 const toneAnalyzer = require("watson-developer-cloud/tone-analyzer/v3");
 const toneobj = require('../secret').t_analyser;
 
@@ -82,7 +81,7 @@ router.post('/',uploads.single('file'), (req,res,next)=>{
         });
         req.session.file = req.file.path;
         //shell.rm(req.file.path);
-        shell.rm(filepath);
+        fs.unlinkSync(filepath);
 
         analyze(text)
         .then((txt)=>{

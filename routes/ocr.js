@@ -11,7 +11,9 @@ const Sentiment = new sentiment();
 /**
  * @api {post} /ocr submit PDF
  * @apiName submit PDF
+ * @apiGroup user
  * @apiParam {file} file upload multpart file data
+ * 
  * 
  * @apiParamExample {json} response-example
  * 

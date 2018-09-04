@@ -4,6 +4,7 @@ define({ "api": [
     "url": "/ocr",
     "title": "submit PDF",
     "name": "submit_PDF",
+    "group": "user",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -26,7 +27,6 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routes/ocr.js",
-    "group": "_home_angad_Desktop_STUFF_ITS_A_VR_routes_ocr_js",
-    "groupTitle": "_home_angad_Desktop_STUFF_ITS_A_VR_routes_ocr_js"
+    "groupTitle": "user"
   }
 ] });

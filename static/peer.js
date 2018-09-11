@@ -6,6 +6,6 @@ $(document).ready(()=>{
         console.log(data);
         $("#data").append(`String:\n\n${data.str}\n\n\n\nAnalysis:\n\n${JSON.stringify( data.analysis) }`);
     });
-});
+}); 
 
 

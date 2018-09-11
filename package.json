@@ -22,15 +22,23 @@
     "pdf-text": "^0.4.0",
     "save": "^2.3.2",
     "sentiment": "^5.0.1",
+    "socket.io": "^2.1.1",
     "watson-developer-cloud": "^3.2.1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angadsharma1016/CodeCombat.git"
   },
-  "bugs": {
-    "url": "https://github.com/angadsharma1016/CodeCombat/issues"
+  "apidoc": {
+    "name": "ITS-A-VR",
+    "version": "0.1.0",
+    "description": "Experience new reality",
+    "title": "ITS-A-VR",
+    "url": "http://localhost"
   },
-  "homepage": "https://github.com/angadsharma1016/CodeCombat#readme",
+  "bugs": {
+    "url": "https://github.com/angadsharma1016/ITS-A-VR"
+  },
+  "homepage": "https://github.com/angadsharma1016/ITS-A-VR",
   "description": ""
 }

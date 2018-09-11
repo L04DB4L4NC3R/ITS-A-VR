@@ -1,10 +1,13 @@
 $(document).ready(()=>{
     $("#data").html('');
-    const socket = io();
+    const socket = io.connect();
 
-    socket.on("data",(data)=>{
-        console.log(data);
-        $("#data").append(`String:\n\n${data.str}\n\n\n\nAnalysis:\n\n${JSON.stringify( data.analysis) }`);
+    socket.on("connect",()=>{
+        console.log(socket.id.toString())
+        socket.on(socket.id.toString(),(data)=>{
+            console.log(socket.id.toString());
+            $("#data").append(`String:\n\n${data.str}\n\n\n\nAnalysis:\n\n${JSON.stringify( data.analysis) }`);
+        });
     });
 }); 
 

@@ -328,10 +328,10 @@ router.post('/',uploads.single('file'), (req,res,next)=>{
                 for(let i of chunk)
                     str+=i;
                 let analysis = Sentiment.analyze(str);
-                console.log(analysis);
                 io.sockets.on("connection",(client)=>{
+                   // client.send(client.id); 
                     console.log(client.id);
-                    io.sockets.emit("data",{str,analysis});
+                    io.sockets.emit(client.id.toString(),{str,analysis});
                 });
             }
         });

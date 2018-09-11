@@ -7,6 +7,7 @@ const morgan=require('morgan');
 const session = require("express-session");
 const bodyParser=require('body-parser');
 const ocr=require('./routes/ocr.js');
+const socket = require("socket.io");
 //const secret = require("./secret")
 const app=express();
 
@@ -17,14 +18,14 @@ app.use(session({
     resave:false
 }));
 app.set("view engine","ejs");
-app.use(express.static('docs'));
+app.use(express.static('static'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 
 app.get('/',(req,res,next)=>{
-    res.sendFile(__dirname+"views/index.html");
+    res.render("index")
 });
 
 app.get('/test',(req,res,next)=>{
@@ -33,9 +34,9 @@ app.get('/test',(req,res,next)=>{
 
 });
 
-app.get("/docs",(req,res,next)=>{
-    res.sendFile(`${__dirname}/docs/index.html`);
-})
+// app.get("/docs",(req,res,next)=>{
+//     res.sendFile(`${__dirname}/docs/index.html`);
+// })
 
 
 app.use('/ocr',ocr);
@@ -48,6 +49,10 @@ app.use(function(err,req,res,next){
 
 });
 
-app.listen(3000,function(err,result){
+let server = app.listen(3000,function(err,result){
   console.log("Connected to server ");
 });
+
+let io = socket(server);
+
+app.socket = io;

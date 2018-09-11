@@ -311,10 +311,9 @@ const Sentiment = new sentiment();
  */
 router.post('/',uploads.single('file'), (req,res,next)=>{
 
-    if(req.file === undefined){
-        var err = new Error('error');
-        next(err);
-    }
+    if(req.file === undefined)
+        next(new Error('error'));
+    let io = req.app.socket;
 
     let readstream = fs.createReadStream(path.resolve(__dirname, '../uploads/'+req.file.filename));
     readstream.on("error",console.log);
@@ -329,7 +328,11 @@ router.post('/',uploads.single('file'), (req,res,next)=>{
                 for(let i of chunk)
                     str+=i;
                 let analysis = Sentiment.analyze(str);
-                console.log(analysis)
+                console.log(analysis);
+                io.sockets.on("connection",(client)=>{
+                    console.log(client.id);
+                    io.sockets.emit("data",{str,analysis});
+                });
             }
         });
     });
